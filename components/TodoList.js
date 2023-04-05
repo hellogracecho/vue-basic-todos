@@ -11,9 +11,8 @@ export default {
         </h2>
         <div v-if="todos.length" >
             <todo-tags
+                v-model="currentTag"
                 :initial-tags="todos.map(a => a.tag)"
-                :currentTag="currentTag"
-                @changeTag="currentTag = $event"
             />
             <ul class="px-3 border rounded-lg divide-y">
                 <todo-item
