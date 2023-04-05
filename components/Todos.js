@@ -12,11 +12,7 @@ export default {
     `,
     data() {
         return {
-            todos: [
-                { name: 'Lorem ipsum dolor sit', complete: false, id: 1, tag: 'tag1' },
-                { name: 'ipsum dolor', complete: false, id: 2, tag: 'tag2' },
-                { name: 'Consectetur adipisicing elit', complete: false, id: 3, tag: 'tag1' },
-            ],
+            todos: [],
         }
     },
     computed: {
@@ -26,6 +22,13 @@ export default {
                 completed: this.todos.filter(todo => todo.complete)
             }
         }
+    },
+    created() {
+        fetch('http://localhost:3000/todos')
+        .then(response => response.json())
+        .then(todos => {
+            this.todos = todos;
+        })
     },
     methods: {
         add(newTodo) {
