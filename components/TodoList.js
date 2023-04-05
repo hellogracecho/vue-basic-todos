@@ -1,29 +1,28 @@
 import TodoItem from './TodoItem.js'
+import TodoTags from './TodoTags.js'
+
 export default {
-    components: { TodoItem },
+    components: { TodoItem, TodoTags },
     template: `
     <section class="w-80 h-72 overflow-auto">
         <h2 class="mb-2 font-bold">
             {{ title }}
             <span>({{ todos.length }})</span>
         </h2>
-        <div v-if="todos.length" class="mb-4 flex gap-2">
-            <button 
-                @click="currentTag = tag"
-                v-for="tag in tags"
-                class="p-1.5 py-px rounded border border-purple-800 text-purple-800"
-                :class="{
-                    'bg-purple-800 text-white' : tag == currentTag
-                }"
-            >{{ tag }}</button>
+        <div v-if="todos.length" >
+            <todo-tags
+                :initial-tags="todos.map(a => a.tag)"
+                :currentTag="currentTag"
+                @changeTag="currentTag = $event"
+            />
+            <ul class="px-3 border rounded-lg divide-y">
+                <todo-item
+                    v-for="todo in filteredTodos"
+                    :key="todo.id"
+                    :todo="todo"
+                ></todo-item>
+            </ul>
         </div>
-        <ul v-if="todos.length" class="px-3 border rounded-lg divide-y">
-            <todo-item
-                v-for="todo in filteredTodos"
-                :key="todo.id"
-                :todo="todo"
-            ></todo-item>
-        </ul>
     </section>
     `,
     data() {
