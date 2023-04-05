@@ -34,9 +34,6 @@ export default {
         title: String
     },
     computed: {
-        tags() {
-            return ['all', ...new Set(this.todos.map( todo => todo.tag ))];
-        }, 
         filteredTodos() {
             if (this.currentTag === 'all') {
                 return this.todos;
