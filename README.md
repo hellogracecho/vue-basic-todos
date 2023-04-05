@@ -11,7 +11,7 @@ With tutorial [Learn Vue 3: Step by Step
  It uses fake JSON data from `db.json` 
 Start JSON Server
 ```bash
-npx json-server db.json
+npx json-server db.json -p 3001
 ```
 While running this local DB `http://localhost:3000/todos`, you can fetch the Fake API in [Todos.js](./components/Todos.js)
   

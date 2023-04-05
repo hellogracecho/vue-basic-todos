@@ -24,7 +24,7 @@ export default {
         }
     },
     created() {
-        fetch('http://localhost:3000/todos')
+        fetch('http://localhost:3001/todos')
         .then(response => response.json())
         .then(todos => {
             this.todos = todos;
